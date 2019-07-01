@@ -1,4 +1,4 @@
-import { isIos } from "./util";
+import { isIOS } from "./util";
 
 function setupWebViewJavascriptBridge(callback) {
   if (window.WebViewJavascriptBridge) {
