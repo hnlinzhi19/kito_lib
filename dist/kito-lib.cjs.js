@@ -102,7 +102,7 @@ const handleButtons = (icon, visible = 0, cb) => {
   } catch (e) {
     console.log(e);
   }
-}; 
+};
 /**
  * 下载图片
  */
@@ -152,7 +152,7 @@ const handleClipboard = (str, cb) => {
 /**
  * 上传头像
  */
-const handleUploadImage = (cb) => {
+const handleUploadImage = cb => {
   try {
     window.WebViewJavascriptBridge.registerHandler("uploadImageCb", res => {
       cb && cb(res);
@@ -167,6 +167,7 @@ const handleUploadImage = (cb) => {
 // handleClipboard
 const anroidInit = bridge => {
   try {
+    console.log('start init androd');
     bridge.init(function(message, responseCallback) {
       console.log("JS got a message", message);
       var data = {
@@ -181,30 +182,24 @@ const anroidInit = bridge => {
     console.log(e);
   }
 };
-let inited = false;
 
 function connectWebViewJavascriptBridge(callback) {
-  if (inited) {
-    callback();
-    return;
-  }
-  if (isIOS && !inited) {
+  if (isIOS) {
     setupWebViewJavascriptBridge(function(bridge) {});
-    inited = true;
   }
   if (window.WebViewJavascriptBridge) {
-    if (!inited) {
+    if (!isIOS) {
       anroidInit(WebViewJavascriptBridge);
-      inited = true;
     }
     callback(WebViewJavascriptBridge);
   } else {
     document.addEventListener(
       "WebViewJavascriptBridgeReady",
       function() {
-        anroidInit(WebViewJavascriptBridge);
+        if (!isIOS) {
+          anroidInit(WebViewJavascriptBridge);
+        }
         callback(WebViewJavascriptBridge);
-        inited = true;
       },
       false
     );
