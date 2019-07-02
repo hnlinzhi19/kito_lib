@@ -236,7 +236,7 @@
 document.addEventListener("DOMContentLoaded",fuction(){
  
   window.kitoLib.initClient(function(){
-      window.kitoLib.enableRefresh();
+      window.kitoLib.enableRefresh(window.enableRefresh || 0);
   })
   
 },false);
