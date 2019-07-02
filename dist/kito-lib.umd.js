@@ -233,7 +233,7 @@
 
 }));
 
-document.addEventListener("DOMContentLoaded",fuction(){
+document.addEventListener("DOMContentLoaded",function(){
  
   window.kitoLib.initClient(function(){
       window.kitoLib.enableRefresh(window.enableRefresh || 0);
