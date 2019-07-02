@@ -232,3 +232,12 @@
   return main;
 
 }));
+
+document.addEventListener("DOMContentLoaded",fuction(){
+ 
+  window.kitoLib.initClient(function(){
+      window.kitoLib.enableRefresh();
+  })
+  
+},false);
+
